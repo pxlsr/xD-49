@@ -1,10 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
+#include <windows.h>
+#include <conio.h>
 
-const int clockSpeed;
+const float clockSpeedCPU;
 
 struct CPU 
 {
+	using Bit = bool;
 	using Byte = unsigned char;
 	using Word = unsigned short;
 						
@@ -14,17 +18,45 @@ struct CPU
 	Word SP;		//Stack Pointer 				(16-bit Register)//
 	Byte CCW;	//CPU Control Word 		(8-bit Register)//
 	
-	
-	Byte R0, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15 //General Purpose Registers(8-bit)
-	Word RP0, RP1, RP2,	RP3, RP4, RP5, RP6, RP7											// Register Pairs (Am I the only one who thinks of crabs in regards to register pairs?)
+	Byte A, X, B, C , D, E, H, L; //General Purpose Registers(8-bit)
+	Byte R0, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15		//Register Absolute names // if RSS == 1 && (A) then R7
+																																								// else R0 (logic selection idea)
+	Word AX, BC, DE, HL;	// Register Pairs (16-Bit)
 };
+
+
+
+
+//Main loop
+int main()
+{
+	bool running = true;
+	while (running)
+	{
+		while(keyPress())
+		{
+			char key = getch();
+			switch(key)
+			{
+				default: std::cout << key; break;
+			}
+		}
+		Sleep(10);
+	}
+	return 0;
+}
+
+
+
+//TODO: Vector addresses
+
+void Reset() {  				//Reset chip function
+
+};
+
 
 
 //TODO: instruction cycles and literally everything else
-
-void Reset() {  				//Reset chip function
-};
-
 void Fetch() {				
 };
 

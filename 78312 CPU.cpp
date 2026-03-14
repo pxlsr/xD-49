@@ -92,24 +92,29 @@ class CPU
 
     class ALU {      //Arithmetic Logic Unit definition - will contain functions for specific operation performed
     public:
-        std::string ALUoperation;     //The operation being performed i.e addition, subtraction
+
         int ALUoperand1;        //The first variable handed to the ALU
+        char ALUoperation;     //The operation being performed i.e addition, subtraction
         int ALUoperand2;        //The second variable handed to the ALU
         int ALUresult;          //The result of the ALUs calculation
-        ALU(int VAR1, short OPERATION, int VAR2, int RESULT){       //ALU constructor with parameters
+
+        ALU(int VAR1, char OPERATION, int VAR2, int RESULT){       //ALU constructor with parameters
 
 
             ALUoperand1 = VAR1;
             ALUoperation = OPERATION;
             ALUoperand2 = VAR2;
             ALUresult = RESULT;
-            if (ALUoperation == "addition"){
+            if (ALUoperation == '+'){
                 //do addition thingy and store result somewhere
-                printf("uncoded addition feature");
+               RESULT, ALUresult = VAR1 + VAR2;
+               printf("semi coded addition feature");
             }
-            else if (ALUoperation == "subtraction"){
-                    printf("uncoded subtraction feature");
+            else if (ALUoperation == '-'){
                 //do subtraction thingy and store result somewhere
+                    RESULT, ALUresult = VAR1 - VAR2;
+                    printf("semi coded subtraction feature");
+
             }
             else{
                 //catch unintended states
@@ -142,7 +147,7 @@ int main()  //Main loop, not finished yet
             switch(key)
             {
                 default: std::cout << key; break;
-                ALU(1, 1, 1, NULL);
+                ALU(1, '+', 1, NULL);
             };
         }
         Sleep(10);

@@ -6,7 +6,7 @@
 
 const float clockSpeedCPU = 0;
 
-
+//using string = std::string;
 
 
 class CPU
@@ -17,6 +17,8 @@ class CPU
 //    using Byte = unsigned char;
 //    using Word = unsigned short;
     class Byte{
+    public:
+
         bool bit0;
         bool bit1;
         bool bit2;
@@ -25,6 +27,16 @@ class CPU
         bool bit5;
         bool bit6;
         bool bit7;
+
+        //second set of bits
+        bool bit8;
+        bool bit9;
+        bool bit10;
+        bool bit11;
+        bool bit12;
+        bool bit13;
+        bool bit14;
+        bool bit15;
     };
 
 
@@ -36,26 +48,13 @@ class CPU
             class Low{
                 public:
                 bool CY = 0;		//Carry(PSW.L0)
-                bool SUB = 0;	//Subtraction(PSW.L1)
+                bool SUB = 0;	//Subtraction(PSW.L1)   set to 1 if ALU is doing a subtraction operation, else 0
                 bool PV = 0;		//Parity/Overflow(PSW.L2)
                 bool UF = 0;	//User Flag(PSW.L3)
                 bool AC = 0;		//Auxillary Carry(PSW.L4)
                 bool RSS = 0;	//Register Set Selection Flag(PSW.L5)
                 bool Z = 0;	//Zero Flag(PSW.L6)
                 bool S = 0;		//Sign Flag(PSW.L7)
-                LowJoin (short LowFullByte)
-                {
-                    bool bit0 = CY;
-                    bool bit1 = SUB;
-                    bool bit2 = PV;
-                    bool bit3 = UF;
-                    bool bit4 = AC;
-                    bool bit5 = RSS;
-                    bool bit6 = Z;
-                    bool bit7 = S;
-                     //LowFullByte = CPU.Byte.bit0 << CPU.Byte.bit1 << CPU.Byte.bit2 << CPU.Byte.bit3 << CPU.Byte.bit4 << CPU.Byte.bit5 << CPU.Byte.bit6 << CPU.Byte.bit7;
-
-                }
                 };
     };
             class High{
@@ -80,6 +79,7 @@ class CPU
 
 
     short SP;		//Stack Pointer 				(16-bit Register)//
+                    //Becomes undef if Reset();
 
     char CCW;	//CPU Control Word 		(8-bit)//
 
@@ -96,19 +96,27 @@ class CPU
         int ALUoperand1;        //The first variable handed to the ALU
         int ALUoperand2;        //The second variable handed to the ALU
         int ALUresult;          //The result of the ALUs calculation
-        ALU(short OPERATION, int VAR1, int VAR2){       //ALU constructor with parameters
-            ALUoperation = OPERATION;
+        ALU(int VAR1, short OPERATION, int VAR2, int RESULT){       //ALU constructor with parameters
+
+
             ALUoperand1 = VAR1;
+            ALUoperation = OPERATION;
             ALUoperand2 = VAR2;
+            ALUresult = RESULT;
             if (ALUoperation == "addition"){
-                //Define the behavior of the ALU addition operation
-                ALUresult = ALUoperand1 + ALUoperand2;
+                //do addition thingy and store result somewhere
+                printf("uncoded addition feature");
             }
-            else if (ALUoperation == "subtraction")
-            {
-                //Define the behavior of the ALU subtraction operation
-                ALUresult = ALUoperand1 - ALUoperand2;
+            else if (ALUoperation == "subtraction"){
+                    printf("uncoded subtraction feature");
+                //do subtraction thingy and store result somewhere
             }
+            else{
+                //catch unintended states
+                printf("HELP");
+            }
+
+
         }
         };
 
@@ -118,7 +126,9 @@ class CPU
 
 int main()  //Main loop, not finished yet
 {
+    char give;
     CPU CPUObject;
+
         //ALU (ALUoperation,ALUoperator1,ALUoperator2,ALUresult)
     {
 
@@ -132,6 +142,7 @@ int main()  //Main loop, not finished yet
             switch(key)
             {
                 default: std::cout << key; break;
+                ALU(1, 1, 1, NULL);
             };
         }
         Sleep(10);
@@ -145,8 +156,8 @@ int main()  //Main loop, not finished yet
 
 //TODO: Vector addresses
 
-void Reset() {  				//Reset chip function
-
+void Reset() {  				//Reset chip function - eventually will behave as the hardware RESET pin
+                                //SP = undef
 };
 //TODO: instruction cycles and literally everything else
  cpuCycle(){

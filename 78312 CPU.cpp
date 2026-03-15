@@ -18,25 +18,29 @@ class CPU
 //    using Word = unsigned short;
     class Byte{
     public:
-        //first set of bits (low order byte in 16 bit mode)
-        bool bit0;
-        bool bit1;
-        bool bit2;
-        bool bit3;
-        bool bit4;
-        bool bit5;
-        bool bit6;
-        bool bit7;
 
-        //second set of bits (high order byte in 16 bit mode)
-        bool bit8;
-        bool bit9;
-        bool bit10;
-        bool bit11;
-        bool bit12;
-        bool bit13;
-        bool bit14;
-        bool bit15;
+        //
+        //first set of bits (high order byte(?) in 16 bit mode)
+                        // if mode = PSW then bit configuration is:
+        bool bit0;      // =0 = H7
+        bool bit1;      // =RBS2 = H6
+        bool bit2;      // =RBS1 = H5
+        bool bit3;      // =RBS0 = H4
+        bool bit4;      // =0 = H3
+        bool bit5;      // =0 = H2
+        bool bit6;       //=IE = H1
+        bool bit7;      // =0 = H0
+
+        //second set of bits (low order byte(?) in 16 bit mode)
+                        //if mode = PSW then bit configuration is:
+        bool bit8;      //=S = L7
+        bool bit9;      //=Z = L6
+        bool bit10;     //=RSS = L5
+        bool bit11;     //=AC = L4
+        bool bit12;     //=UF = L3
+        bool bit13;     //=PV = L2
+        bool bit14;     //=SUB = L1
+        bool bit15;     //=CY = L0
     };
 
 
@@ -72,7 +76,8 @@ class CPU
                                 //if RSS=0{RP0, RP1 = AX, BC}else if RSS=1{RP2, RP3 = AX, BC}
                                 //regardless of RSS{RP4, RP5, RP6, RP7 = VP, UP, DE, HL}
 
-                bool Z;	        //Zero Flag - when operation result is 0, set zero flag to 1. Else if not 0, set zero flag to = 0;
+                bool Z;	        //Zero Flag - when operation result is 0, set Z flag to 1. Else if not 0, set Z flag to = 0;
+                                //              if
                 bool S;
 
 
@@ -131,6 +136,7 @@ class CPU
             if (OPERATION == '+'){
                 //do addition thingy and store result somewhere
                int RESULT = VAR1 + VAR2;
+
                ALUresult = RESULT;
                printf("semi coded addition feature");
             }
@@ -152,12 +158,16 @@ class CPU
 
 
 
-int res=0;
+int result=0;
 int main()  //Main loop, not finished yet, I guess I could hash this into a watchdog timer or something wild
 {
 
      CPU CPUObject;
-     res = ALU(2, '-', 1).ALUresult;
+     result = ALU(1, '-', 1).ALUresult;
+     if (result == 0){
+        //somehow set PSW.Z (Zero flag) to 1;
+        printf("RESULT IS ZERO");
+     }
 
 
 
@@ -172,7 +182,7 @@ int main()  //Main loop, not finished yet, I guess I could hash this into a watc
             {
 
 
-                default: std::cout << res; break;
+                default: std::cout << result; break;
 
 
 

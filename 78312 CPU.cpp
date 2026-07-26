@@ -7,7 +7,7 @@
 const float clockSpeedCPU = 0;
 
 //using string = std::string;
-char ExternalROM [65536];
+char ExternalROM [65536]; // Memory space to emulate System ROM (64kb)
 
 class CPU
 {
@@ -116,6 +116,8 @@ class CPU
                 //PSW High Byte (or bits)
                 public:
                 bool IE = 0;    //Interrupt Request Enable Flag (PSW.H1)// EI will set this to 1, DI will set it to 0
+                                // if EI==1 then IE=1,
+                                //else if DI==1 then IE=0
                 bool RBS0 = 0;
                 bool RBS1 = 0;
                 bool RBS2 = 0;

@@ -1,4 +1,4 @@
-# xD-49
+# xD-69
 ![AAAAAAAAAAAAAAAA](xD-49v2.png)
 
 An emulator for a synth. 

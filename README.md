@@ -1,5 +1,5 @@
 # xD-69
-![AAAAAAAAAAAAAAAA](xd-69.png)
+![AAAAAAAAAAAAAAAA](Logos/xd-69-finaleuro.svg)  
 (Awesome logo made by kilésengati on discord)  
 An emulator for a synth. 
 

@@ -9,9 +9,9 @@
    id="svg5"
    inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
    sodipodi:docname="xd-69-final.svg"
-   inkscape:export-filename="xd-69.png"
-   inkscape:export-xdpi="960"
-   inkscape:export-ydpi="960"
+   inkscape:export-filename="xD-69.png"
+   inkscape:export-xdpi="439.07394"
+   inkscape:export-ydpi="439.07394"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -31,9 +31,9 @@
      inkscape:zoom="1.4142136"
      inkscape:cx="214.25335"
      inkscape:cy="47.729706"
-     inkscape:window-width="1600"
-     inkscape:window-height="829"
-     inkscape:window-x="1912"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="g10259" />
@@ -93,6 +93,10 @@
        transform="translate(4.0244898,-0.30817768)"
        style="display:inline;mix-blend-mode:normal;fill:#0000ff"
        inkscape:label="g10259">
+      <path
+         id="rect1"
+         style="opacity:1;fill:#333333;fill-rule:evenodd;stroke-width:2"
+         d="M -24.747835,33.807087 H 514.77469 V 115.12436 H -24.747835 Z" />
       <g
          aria-label="linear synthesizer emulator"
          id="text3993"

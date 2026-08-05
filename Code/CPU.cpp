@@ -1,3 +1,5 @@
+#include <cstdint>
+
 //Clock speeds
 float clockSpeedCPU = 12.000;    //12.000MHz (CPU clock speed)
 float clockSpeedDSP = 32.768;    //32.768MHz (Synth core clock speed)
@@ -8,10 +10,10 @@ char SRAM1 [8000];               //HM6264ASP SRAM
 char SRAM2 [32000];              //HM62256LP SRAM
 char SRAM3 [2048];               //LC3517AS SRAM
 char OSROM [65536];              //Memory space to emulate System ROM (64kb)
-char PCMROM [250000];             //Memory space to emulate PCM sample ROM (2Mbit)
+char PCMROM [262144];             //Memory space to emulate PCM sample ROM (2Mbit)
 
-//Operation code parsing from OS binary, will need to use a MAME disassembler to parse the binary. Once disassembled,
-//get this program to parse the disassembly and bridge the operations
+//Operation code parsing from OS binary
+//I will need to update this with an opcode table using hex to map the operations
 struct OPCodes
 {
     //Mnemonics used for this CPU:      TODO: Table this shit so it can be hex-represented
@@ -57,7 +59,7 @@ class CPU
 
     char R0, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15;		//Register Absolute names // if RSS == 1 && (A) then R7
                                                                                                                                                                     // else R0 (logic selection idea)
-    short AX, BC, DE, HL;	// Register Pairs (16-Bit)
+	// Register Pairs (16-Bit) TODO!!
 
     class ALU {      //Arithmetic Logic Unit definition - will contain functions for specific operation performed
     public:

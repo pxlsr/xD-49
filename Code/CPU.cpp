@@ -1,6 +1,48 @@
+//Clock speeds
+float clockSpeedCPU = 12.000;    //12.000MHz (CPU clock speed)
+float clockSpeedDSP = 32.768;    //32.768MHz (Synth core clock speed)
+    //float clockSpeedMultiplier = 1.000;   //might come in handy later for clock speed fuckery
+//Memories
+char DRAM [4096];                //
+char SRAM1 [8000];               //HM6264ASP SRAM
+char SRAM2 [32000];              //HM62256LP SRAM
+char SRAM3 [2048];               //LC3517AS SRAM
+char OSROM [65536];              //Memory space to emulate System ROM (64kb)
+char PCMROM [250000];             //Memory space to emulate PCM sample ROM (2Mbit)
 
-//using string = std::string;
-char ExternalROM [65536]; // Memory space to emulate System ROM (64kb)
+//Operation code parsing from OS binary, will need to use a MAME disassembler to parse the binary. Once disassembled,
+//get this program to parse the disassembly and bridge the operations
+struct OPCodes
+{
+    //Mnemonics used for this CPU:      TODO: Table this shit so it can be hex-represented
+    //ADD, ADDC, ADDW, ADJ4, AND, AND1,
+    //BC, BE, BF, BFSET, BGE, BGT, BH, BL, BLE, BLT, BN, BNC, BNE, BNH,
+    //BNL, BNV, BNZ, BP, BPE, BPO, BR, BRK, BRKCS, BT, BTCLR, BV, BZ,
+    //CALL, CALLF, CALLT, CLR1, CMP, CMPBKC, CMPBKE, CMPBKNC, CMPBKNE,
+    //CMPMC, CMPME, CMPMNC, CMPMNE, CMPW,
+    //DBNZ, DEC, DECW, DI, DIVUW, DIVUX, EI,
+    //INC, INCW, MOV, MOVBK, MOVM, MOVW, MOV1,
+    //MULU, MULUW, NOP, NOT1, OR, OR1, POP,
+    //POPU, PUSH, PUSHU, RET, RETI, RETCS, ROL, ROLC,
+    //ROL4, ROR, RORC, ROR4, SEL, SET1, SHL, SHLW, SHR, SHRW,
+    //SUB, SUBC, SUBW, SWRS, XCH, XCHBK, XCHM, XCHW, XOR, XOR1
+        //Operands used for this CPU:
+        //
+        //
+        //
+        //
+        //
+
+    public: 
+    short mnemonic;
+    short operand1;
+    short operand2;
+    short operand3;
+    short operand4;
+    short operand5;
+    short operand6;
+};
+
 
 class CPU
 {
@@ -27,7 +69,11 @@ class CPU
     };       
 
 
-int main()  //Main loop, not finished yet, I guess I could hash this into a watchdog timer or something wild
+
+
+
+
+    int main()  //Main loop, not finished yet, I guess I could hash this into a watchdog timer or something wild
 {
 
     
@@ -44,7 +90,7 @@ void RESET() {  				//Reset chip function - eventually will behave as the hardwa
 
 };
 //TODO: instruction cycles and literally everything else
- cpuCycle(){
+ void cpuCycle(){
     float Frequency = clockSpeedCPU; //Define it later..
 
 };
